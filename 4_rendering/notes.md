@@ -30,3 +30,4 @@ Tools:
 
 Links
 - https://www.joshwcomeau.com/react/why-react-re-renders/
+- https://www.youtube.com/watch?v=AwW7olQ84Qs&themeRefresh=1
