@@ -23,10 +23,19 @@ When:
 
 How:
 - Rendering is mostly handled automatically by React. Developers create components and React takes care of rendering
+- It has 5 steps
+  1. Component calls the render method (or returns JSX in functional components)
+  2. React Element: React creates element definition for each of the component.
+  3. React creates a virtual DOM representation from the element definition
+  4. Reconciliation: For re-renders, React diffs this with the previous virtual DOM
+  5. React updates the actual DOM with the necessary changes and UI related.
 
 Tools:
 - virtual DOM
 - diffing algorithm
+- Batching
+- Concurrent mode
+- Suspense
 
 Links
 - https://www.joshwcomeau.com/react/why-react-re-renders/
