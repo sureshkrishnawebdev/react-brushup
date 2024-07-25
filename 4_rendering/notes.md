@@ -37,6 +37,12 @@
 - Concurrent mode
 - Suspense
 
+**Jargons:**
+- prop drilling
+- prop explosion
+- reference equalling(===)
+- chaining of the hooks
+
 **Links**
 - https://www.joshwcomeau.com/react/why-react-re-renders/
 - https://www.youtube.com/watch?v=AwW7olQ84Qs&themeRefresh=1
@@ -73,8 +79,44 @@
 
     1. Performance issues if not handled properly.
 
-**2. Patterns to avoid unwanted re-renders**
+**2. Things to avoid unwanted re-renders**
 
-  1. Moving state specific to component
-  2. Passing component as children - eg: scroll offset --> If there is no state dependency of the children components
-  3. Passing component as prop - when there is inter-dependent actions among these components.
+  **1. Using composition patterns**
+
+    1. Moving state specific to component or Moving state down
+    2. Passing component as children - eg: scroll offset --> If there is no state dependency of the children components
+    3. Passing component as prop - when there is inter-dependent actions among these components.
+
+  **2. Memoization**
+
+    **what:**
+      It's a practice where we used to store values(memorize) and compare it with new values.
+
+    **why:**
+      To avoid unwanted re-rendering / improve performance
+
+    **how:**
+      It's by using props.
+      - Note:
+        - props are not responsible for re-render. Instead its responsible to prevent re-rendering when used along with memoization.
+
+    **pros:**
+      Improves performance
+    **cons:**
+      Improper memoization.
+      [eg:
+        * Even if Total props(10) :a single prop(1) is not handled among all other props(9) - then memoization handled for all props(9) is useless
+        * This single prop leads to re-rendering.
+      ]
+
+    **Approaches:**
+      1. Using functions
+        - React.memo() == PureComponents(class based components)
+
+      2. Lifecycle hooks
+        - React.memo(Component, ?arePropsEqual) == ShouldComponentUpdate()
+        - "arePropsEqual" is a custom function we can pass to compare old props with new props. For handling custom checks.
+
+      3. Using hooks
+        - useMemo -> to store value[reference]
+        - useCallback -> to store function[reference]
