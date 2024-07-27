@@ -120,3 +120,40 @@
       3. Using hooks
         - useMemo -> to store value[reference]
         - useCallback -> to store function[reference]
+
+  **3. Key**
+
+    **what:**
+      The key prop is a special attribute in React used to uniquely identify elements in a list.
+      Used to [mount, unmont and re-render] a component based on it's value.
+
+    **why**
+      It's used to improve the performance of the application
+      Sometimes we can use them for re-setting state
+
+    **when**
+      You should use the key prop whenever you are rendering a list of elements.
+
+    **how**
+      key has to be 'unique' and 'stable'
+      If the value of key
+        - new -> mounting
+        - old -> re-rendering
+        - removed -> un-mounting
+
+      **pros**
+        Performance: Keys enable efficient updates and rendering.
+        Stability: Helps maintain the component state and DOM structure.
+        Consistency: Ensures that the UI behaves predictably when data changes.
+
+      **cons**
+        Potential Bugs: Using non-unique keys or indices as keys can lead to unpredictable behavior.
+        Extra Effort: Requires careful management of unique identifiers, especially in complex lists.
+
+      **mis-conceptions**
+        Index cannot be used as key - It can be used in below scenarios.
+          - In case of dynamic websites
+          - In case of static websites - where there is no add, removal or update of list not available.
+        If key is unique and not changed it prevernts re-rendering.
+          - As we know re-rendering will in 3 scenarios[self component state, parent component renders, context]. so, devoid of the value of the key it re-renders.
+          - It can be used in association with 'memo' to prevent re-rendering.
